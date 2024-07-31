@@ -1,19 +1,22 @@
-import Header from '@/components/header'
 import RecentlyMovie from '@/components/recently-movie'
 import VideoPlayer from '@/components/video-player'
-import { getRecentlyMovie } from '@/app/actions'
+import { getRecentlyMovie, getTrendingMovie, getRomanceMovie, getAnimeMovie } from '@/app/actions'
+import TrendingMovie from '@/components/trending-movie'
+import ListMovie from '@/components/list-movie'
 
 export default async function Home() {
   const dataRecently = await getRecentlyMovie(1)
+  const dataTrending = await getTrendingMovie(1)
+  const dataRomance = await getRomanceMovie(1)
+  const dataAnime = await getAnimeMovie(1)
 
   return (
     <div>
-      <Header />
-      <div className="relative pt-[56.25%] mb-10">
+      <div className="relative pt-[56.25%]">
         <VideoPlayer
           url={[
             // "https://vimeo.com/34122764",
-            "https://www.youtube.com/watch?v=NFIRWIGxWl8",
+            "https://www.youtube.com/watch?v=NFIRWIGxWl8"
           ]}
           muted={true}
           controls={false}
@@ -21,7 +24,12 @@ export default async function Home() {
           height="100%"
         />
       </div>
-      <RecentlyMovie data={dataRecently} />
+      <div className="w-full h-auto bg-black px-5 lg:px-20 py-10">
+        <RecentlyMovie data={dataRecently} />
+        <TrendingMovie data={dataTrending} />
+        <ListMovie data={dataRomance} title="Romance" viewAll="/romance" />
+        <ListMovie data={dataAnime} title="Anime" viewAll="/anime" />
+      </div>
     </div>
-  );
+  )
 }
