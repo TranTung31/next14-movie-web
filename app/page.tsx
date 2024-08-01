@@ -1,8 +1,8 @@
-import RecentlyMovie from '@/components/recently-movie'
-import VideoPlayer from '@/components/video-player'
-import { getRecentlyMovie, getTrendingMovie, getRomanceMovie, getAnimeMovie } from '@/app/actions'
-import TrendingMovie from '@/components/trending-movie'
+import { getAnimeMovie, getRecentlyMovie, getRomanceMovie, getTrendingMovie } from '@/app/actions'
 import ListMovie from '@/components/list-movie'
+import RecentlyMovie from '@/components/recently-movie'
+import TrendingMovie from '@/components/trending-movie'
+import VideoPlayer from '@/components/video-player'
 
 export default async function Home() {
   const dataRecently = await getRecentlyMovie(1)
