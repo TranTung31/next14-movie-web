@@ -20,6 +20,16 @@ export const getTrendingMovie = async (page: number = 1) => {
   return res.json()
 }
 
+export const getMovieDetail = async (name: string) => {
+  const res = await fetch(`${API_ROOT}/api/film/${name}`)
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data!')
+  }
+
+  return res.json()
+}
+
 export const getRomanceMovie = async (page: number = 1) => {
   const res = await fetch(`${API_ROOT}/api/films/the-loai/tinh-cam?page=${page.toString()}`)
 
