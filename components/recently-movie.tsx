@@ -13,7 +13,7 @@ type RecentlyMovieType = {
 const RecentlyMovie: React.FC<RecentlyMovieType> = ({ data }) => {
   return (
     <div className="recently-movie">
-      <h1 className="font-semibold text-white text-lg py-2">Recently Updated</h1>
+      <h1 className="font-semibold text-white text-lg py-2">Phim mới cập nhật</h1>
       <div className="flex gap-10 overflow-x-auto whitespace-nowrap mb-5 py-5">
         {data?.items?.map((item: any, index: number) => (
           <Link key={index} href={`/movie/${item?.slug}`}>
@@ -22,9 +22,7 @@ const RecentlyMovie: React.FC<RecentlyMovieType> = ({ data }) => {
                 <img
                   src={item?.thumb_url}
                   alt={item?.name}
-                  width={80}
-                  height={120}
-                  className="object-cover transition transform hover:scale-110"
+                  className="object-cover max-w-[80px] min-h-[120px] transition transform hover:scale-110"
                 />
               </div>
               <div className="flex flex-col gap-2 justify-center overflow-hidden">

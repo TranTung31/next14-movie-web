@@ -8,14 +8,14 @@ import { useMemo } from 'react'
 type GeneratePagesProps = {
   currentPage: number
   totalPage: number
-  path: string
+  handlePageChange: any
 }
 
 // Hàm render ra nội dung phân trang
 const GeneratePages: React.FC<GeneratePagesProps> = ({
   currentPage,
   totalPage,
-  path,
+  handlePageChange,
 }) => {
   const result = useMemo(() => {
     const pages: JSX.Element[] = [];
@@ -25,7 +25,7 @@ const GeneratePages: React.FC<GeneratePagesProps> = ({
         pages.push(
           <PaginationItem key={i}>
             <PaginationLink
-              href={`${path}&page=${i}`}
+              onClick={() => handlePageChange(i)}
               isActive={i === currentPage}
             >
               {i}
@@ -39,7 +39,7 @@ const GeneratePages: React.FC<GeneratePagesProps> = ({
           pages.push(
             <PaginationItem key={i}>
               <PaginationLink
-                href={`${path}&page=${i}`}
+                onClick={() => handlePageChange(i)}
                 isActive={i === currentPage}
               >
                 {i}
@@ -54,7 +54,7 @@ const GeneratePages: React.FC<GeneratePagesProps> = ({
         );
         pages.push(
           <PaginationItem key={totalPage}>
-            <PaginationLink href={`${path}&page=${totalPage}`}>
+            <PaginationLink onClick={() => handlePageChange(totalPage)}>
               {totalPage}
             </PaginationLink>
           </PaginationItem>
@@ -62,7 +62,9 @@ const GeneratePages: React.FC<GeneratePagesProps> = ({
       } else if (currentPage > 3 && currentPage < totalPage - 2) {
         pages.push(
           <PaginationItem key={1}>
-            <PaginationLink href={`${path}&page=${1}`}>{1}</PaginationLink>
+            <PaginationLink onClick={() => handlePageChange(1)}>
+              {1}
+            </PaginationLink>
           </PaginationItem>
         );
         pages.push(
@@ -74,7 +76,7 @@ const GeneratePages: React.FC<GeneratePagesProps> = ({
           pages.push(
             <PaginationItem key={i}>
               <PaginationLink
-                href={`${path}&page=${i}`}
+                onClick={() => handlePageChange(i)}
                 isActive={i === currentPage}
               >
                 {i}
@@ -89,7 +91,7 @@ const GeneratePages: React.FC<GeneratePagesProps> = ({
         );
         pages.push(
           <PaginationItem key={totalPage}>
-            <PaginationLink href={`${path}&page=${totalPage}`}>
+            <PaginationLink onClick={() => handlePageChange(totalPage)}>
               {totalPage}
             </PaginationLink>
           </PaginationItem>
@@ -97,7 +99,9 @@ const GeneratePages: React.FC<GeneratePagesProps> = ({
       } else {
         pages.push(
           <PaginationItem key={1}>
-            <PaginationLink href={`${path}&page=${1}`}>{1}</PaginationLink>
+            <PaginationLink onClick={() => handlePageChange(1)}>
+              {1}
+            </PaginationLink>
           </PaginationItem>
         );
         pages.push(
@@ -109,7 +113,7 @@ const GeneratePages: React.FC<GeneratePagesProps> = ({
           pages.push(
             <PaginationItem key={i}>
               <PaginationLink
-                href={`${path}&page=${i}`}
+                onClick={() => handlePageChange(i)}
                 isActive={i === currentPage}
               >
                 {i}
@@ -119,11 +123,11 @@ const GeneratePages: React.FC<GeneratePagesProps> = ({
         }
       }
     }
-    
-    return pages
-  }, [currentPage, totalPage, path])
 
-  return <>{result}</>
-}
+    return pages;
+  }, [currentPage, totalPage]);
+
+  return <>{result}</>;
+};
 
 export default GeneratePages

@@ -5,16 +5,6 @@ import { Input } from '@/components/ui/input'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-} from '@/components/ui/navigation-menu'
 import { FaRegBell } from 'react-icons/fa'
 
 function Header() {
@@ -48,7 +38,7 @@ function Header() {
         onKeyDown={handleSearch}
       />
       <div className="flex items-center gap-3 px-3 text-white">
-        <Link href="/auth/signup">Login/Signup</Link>
+        <Link href="/auth/signup">Đăng ký/Đăng nhập</Link>
         <FaRegBell className="cursor-pointer" />
       </div>
     </div>

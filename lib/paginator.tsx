@@ -10,13 +10,13 @@ import GeneratePages from '@/lib/generate-pages'
 type PaginatorProps = {
   currentPage: number
   totalPage: number
-  path: string
+  handlePageChange: any
 }
 
 const Paginator: React.FC<PaginatorProps> = ({
   currentPage,
   totalPage,
-  path,
+  handlePageChange,
 }) => {
   return (
     <Pagination>
@@ -24,20 +24,20 @@ const Paginator: React.FC<PaginatorProps> = ({
         {/* Button prev page */}
         {currentPage > 1 ? (
           <PaginationItem>
-            <PaginationPrevious href={`${path}&page=${currentPage - 1}`} />
+            <PaginationPrevious onClick={() => handlePageChange(currentPage - 1)} />
           </PaginationItem>
         ) : null}
 
         <GeneratePages
           currentPage={currentPage}
           totalPage={totalPage}
-          path={path}
+          handlePageChange={handlePageChange}
         />
 
         {/* Button next page */}
         {currentPage <= totalPage - 1 ? (
           <PaginationItem>
-            <PaginationNext href={`${path}&page=${currentPage + 1}`} />
+            <PaginationNext onClick={() => handlePageChange(currentPage + 1)} />
           </PaginationItem>
         ) : null}
       </PaginationContent>

@@ -11,25 +11,23 @@ import {
 } from '@/components/ui/breadcrumb'
 import Paginator from '@/lib/paginator'
 import Link from 'next/link'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { IoTimerOutline } from 'react-icons/io5'
 
-type MovieSearchProps = {
+type GenreMovieProps = {
   data: any
   currentPage: number
 }
 
-const MovieSearch: React.FC<MovieSearchProps> = ({ data, currentPage }) => {
+const GenreMovie: React.FC<GenreMovieProps> = ({ data, currentPage }) => {
   const pagination = data?.paginate
   const router = useRouter()
-  const searchParams = useSearchParams()
-  const keyword = searchParams.get('keyword')
   const pathName = usePathname()
 
   const handlePageChange = (page: any) => {
-    router.push(`${pathName}?keyword=${keyword}&page=${page.toString()}`)
+    router.push(`${pathName}?page=${page.toString()}`)
   }
-  
+
   return (
     <div className="text-white">
       <Breadcrumb className="mb-5">
@@ -42,7 +40,7 @@ const MovieSearch: React.FC<MovieSearchProps> = ({ data, currentPage }) => {
           <BreadcrumbSeparator />
           <BreadcrumbItem>
             <BreadcrumbPage className="text-gray-500">
-              Movie Search
+              Genre Movie
             </BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
@@ -81,7 +79,7 @@ const MovieSearch: React.FC<MovieSearchProps> = ({ data, currentPage }) => {
         />
       </div>
     </div>
-  );
+  )
 }
 
-export default MovieSearch
+export default GenreMovie
