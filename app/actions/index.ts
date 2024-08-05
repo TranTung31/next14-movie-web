@@ -49,3 +49,8 @@ export const getAnimeMovie = async (page: number = 1) => {
 
   return res.json()
 }
+
+export const getMovieSearch = async (keyword: string = '', page: string) => {
+  const res = await fetch(`${API_ROOT}/api/films/search?keyword=${keyword}&page=${page || 1}`)
+  return res.json()
+}

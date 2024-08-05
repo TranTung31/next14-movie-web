@@ -15,7 +15,6 @@ export default async function Home() {
       <div className="relative pt-[56.25%]">
         <VideoPlayer
           url={[
-            // "https://vimeo.com/34122764",
             "https://www.youtube.com/watch?v=NFIRWIGxWl8"
           ]}
           muted={true}
@@ -24,7 +23,7 @@ export default async function Home() {
           height="100%"
         />
       </div>
-      <div className="w-full h-auto bg-black px-5 lg:px-20 py-10">
+      <div className="w-full h-auto bg-[#222222] px-5 lg:px-20 py-10">
         <RecentlyMovie data={dataRecently} />
         <TrendingMovie data={dataTrending} />
         <ListMovie data={dataRomance} title="Romance" viewAll="/romance" />
