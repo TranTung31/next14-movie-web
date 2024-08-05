@@ -13,10 +13,12 @@ const TrendingMovie: React.FC<TrendingMovieType> = ({ data }) => {
   return (
     <div className="">
       <div className="flex items-center justify-between">
-        <h1 className="font-semibold text-white text-lg py-2">Trending</h1>
-        <div className="flex items-center gap-2 text-[#95a5a6] text-lg cursor-pointer hover:opacity-85">
-          <span>View all</span> <FaArrowRight />
-        </div>
+        <h1 className="font-semibold text-white text-lg py-2">Phim xu hướng</h1>
+        <Link href="/genre/phim-dang-chieu?page=1">
+          <div className="flex items-center gap-2 text-[#95a5a6] text-lg cursor-pointer hover:opacity-85">
+            <span>View all</span> <FaArrowRight />
+          </div>
+        </Link>
       </div>
 
       <div className="flex gap-10 overflow-x-auto whitespace-nowrap mb-5 py-5">

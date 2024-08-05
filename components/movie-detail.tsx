@@ -49,12 +49,12 @@ const MovieDetail: React.FC<MovieDetailType> = ({ data }) => {
         <BreadcrumbList className="text-white text-base">
           <BreadcrumbItem>
             <BreadcrumbLink className="hover:text-gray-300">
-              <Link href="/">Home</Link>
+              <Link href="/">Trang chủ</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage className="text-gray-500">Movie Detail</BreadcrumbPage>
+            <BreadcrumbPage className="text-gray-500">{`Chi tiết phim ${movie?.name}`}</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
@@ -75,7 +75,7 @@ const MovieDetail: React.FC<MovieDetailType> = ({ data }) => {
               <h2>{movie?.original_name}</h2>
             </div>
             <Button className="bg-red-500 text-white hover:bg-red-300">
-              <FaPlus /> &nbsp; Add to favourite
+              <FaPlus /> &nbsp; Thêm vào yêu thích
             </Button>
           </div>
 
@@ -102,29 +102,48 @@ const MovieDetail: React.FC<MovieDetailType> = ({ data }) => {
           </div>
 
           <div className="text-white">
-            <span>{`Description: ${movie?.description}`}</span>
+            <span className="font-bold">Mô tả: </span>
+            <span>{movie?.description}</span>
           </div>
 
           <div className="flex flex-col gap-1 text-white">
-            <div>{`Country : ${country}`}</div>
-            <div>{`Genre : ${genre}`}</div>
-            <div>{`Date Release : ${formatDateTimeDMY(movie?.created)}`}</div>
-            <div>{`Total episodes : ${movie?.total_episodes}`}</div>
-            {movie?.director && <div>{`Director : ${movie?.director}`}</div>}
-            {movie?.casts && <div>{`Cast : ${movie?.casts}`}</div>}
+            <div>
+              <span className="font-bold">Quốc gia: </span>
+              <span>{country}</span>
+            </div>
+            <div>
+              <span className="font-bold">Thể loại: </span>
+              <span>{genre}</span>
+            </div>
+            <div>
+              <span className="font-bold">Ngày ra mắt: </span>
+              <span>{formatDateTimeDMY(movie?.created)}</span>
+            </div>
+            <div>
+              <span className="font-bold">Tổng số tập: </span>
+              <span>{movie?.total_episodes}</span>
+            </div>
+            <div>
+              <span className="font-bold">Đạo diễn: </span>
+              <span>{movie?.director}</span>
+            </div>
+            <div>
+              <span className="font-bold">Diễn viên: </span>
+              <span>{movie?.casts}</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="w-[100%] lg:w-[60%] max-h-[500px] mt-10 p-4 bg-gray-600 rounded-md">
-        <h1 className="text-white font-semibold pb-4">Episodes:</h1>
-        <div className="flex flex-wrap gap-3">
+      <div className="w-[100%] lg:w-[70%] mt-10 p-4 bg-[#222222] rounded-md">
+        <h1 className="text-white font-semibold pb-4">Danh sách tập:</h1>
+        <div className="flex flex-wrap gap-3 max-h-[500px] overflow-y-auto scroll-smooth">
           {episodes?.map((item: any, index: number) => (
             <Link
               key={index}
               href={`/watch/${movie?.slug}?episode=${item?.name}`}
             >
-              <div className="w-[100px] text-white text-center px-10 py-2 bg-red-500 rounded-md cursor-pointer hover:opacity-85">
+              <div className="w-[100px] text-white text-center px-10 py-2 bg-neutral-700 rounded-md cursor-pointer hover:bg-neutral-600">
                 {item?.name}
               </div>
             </Link>
