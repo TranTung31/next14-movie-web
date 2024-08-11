@@ -1,8 +1,8 @@
-import { getMovieDetail } from '@/app/actions'
+import { getMovieDetail } from '@/app/(routes)/actions'
 import MovieWatch from '@/components/movie-watch'
 import React from 'react'
 
-const MovieWatchPage = async ({ params } : { params: { slug: string } }) => {
+const MovieWatchPage = async ({ params }: { params: { slug: string } }) => {
   const dataMovieDetail = await getMovieDetail(params?.slug)
 
   return (

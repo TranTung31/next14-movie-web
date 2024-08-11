@@ -1,8 +1,8 @@
 import {
   getGenreMovie,
   getRecentlyMovie,
-  getTrendingMovie
-} from '@/app/actions'
+  getTrendingMovie,
+} from '@/app/(routes)/actions'
 import ListMovie from '@/components/list-movie'
 import RecentlyMovie from '@/components/recently-movie'
 import TrendingMovie from '@/components/trending-movie'
@@ -18,7 +18,7 @@ export default async function Home() {
     <div>
       <div className="relative pt-[56.25%]">
         <VideoPlayer
-          url={["https://www.youtube.com/watch?v=NFIRWIGxWl8"]}
+          url={['https://www.youtube.com/watch?v=NFIRWIGxWl8']}
           muted={true}
           controls={false}
           width="100%"
@@ -33,7 +33,11 @@ export default async function Home() {
           title="Phim tình cảm"
           viewAll="/genre/tinh-cam?page=1"
         />
-        <ListMovie data={dataAnime} title="Anime" viewAll="/genre/hoat-hinh?page=1" />
+        <ListMovie
+          data={dataAnime}
+          title="Anime"
+          viewAll="/genre/hoat-hinh?page=1"
+        />
       </div>
     </div>
   )

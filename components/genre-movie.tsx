@@ -9,7 +9,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
-import Paginator from '@/lib/paginator'
+import Paginator from '@/components/common/paginator'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { IoTimerOutline } from 'react-icons/io5'

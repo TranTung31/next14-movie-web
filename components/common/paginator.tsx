@@ -5,7 +5,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination'
-import GeneratePages from '@/lib/generate-pages'
+import GeneratePages from '@/components/common/generate-pages'
 
 type PaginatorProps = {
   currentPage: number
@@ -24,7 +24,9 @@ const Paginator: React.FC<PaginatorProps> = ({
         {/* Button prev page */}
         {currentPage > 1 ? (
           <PaginationItem>
-            <PaginationPrevious onClick={() => handlePageChange(currentPage - 1)} />
+            <PaginationPrevious
+              onClick={() => handlePageChange(currentPage - 1)}
+            />
           </PaginationItem>
         ) : null}
 
