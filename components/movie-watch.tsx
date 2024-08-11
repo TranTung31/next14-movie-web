@@ -1,8 +1,5 @@
 'use client'
 
-import Link from 'next/link'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -11,12 +8,15 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
+import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
+import React, { useEffect, useState } from 'react'
 
-type MovieWatchType = {
+type MovieWatchProps = {
   data: any
 }
 
-const MovieWatch: React.FC<MovieWatchType> = ({ data }) => {
+const MovieWatch: React.FC<MovieWatchProps> = ({ data }) => {
   const [linkEmbed, setLinkEmbed] = useState('')
 
   const searchParams = useSearchParams()
@@ -31,7 +31,7 @@ const MovieWatch: React.FC<MovieWatchType> = ({ data }) => {
         setLinkEmbed(item?.embed)
       }
     })
-  }, [])
+  }, [episodes, episode])
 
   return (
     <div className="">
@@ -45,7 +45,9 @@ const MovieWatch: React.FC<MovieWatchType> = ({ data }) => {
           <BreadcrumbSeparator />
           <BreadcrumbItem>
             <BreadcrumbLink className="hover:text-gray-300">
-              <Link href={`/movie/${movie?.slug}`}>{`Chi tiết phim ${movie?.name}`}</Link>
+              <Link
+                href={`/movie/${movie?.slug}`}
+              >{`Chi tiết phim ${movie?.name}`}</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
@@ -77,8 +79,8 @@ const MovieWatch: React.FC<MovieWatchType> = ({ data }) => {
                 <div
                   className={`w-[100px] text-white text-center px-10 py-2 ${
                     episode === item?.name
-                      ? "bg-red-500 hover:bg-red-400"
-                      : "bg-neutral-700 hover:bg-neutral-600"
+                      ? 'bg-red-500 hover:bg-red-400'
+                      : 'bg-neutral-700 hover:bg-neutral-600'
                   } rounded-md cursor-pointer transition`}
                 >
                   {item?.name}
@@ -89,7 +91,7 @@ const MovieWatch: React.FC<MovieWatchType> = ({ data }) => {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 export default MovieWatch

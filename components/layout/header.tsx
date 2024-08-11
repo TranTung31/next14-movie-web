@@ -33,7 +33,7 @@ function Header() {
       </Link>
       <Input
         className="w-[370px] mx-3"
-        placeholder="Search movies..."
+        placeholder="Tìm kiếm phim..."
         onChange={handleOnChangeSearch}
         onKeyDown={handleSearch}
       />

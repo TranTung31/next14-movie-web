@@ -9,7 +9,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
-import Paginator from '@/lib/paginator'
+import Paginator from '@/components/common/paginator'
 import Link from 'next/link'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { IoTimerOutline } from 'react-icons/io5'
@@ -29,7 +29,7 @@ const MovieSearch: React.FC<MovieSearchProps> = ({ data, currentPage }) => {
   const handlePageChange = (page: any) => {
     router.push(`${pathName}?keyword=${keyword}&page=${page.toString()}`)
   }
-  
+
   return (
     <div className="text-white">
       <Breadcrumb className="mb-5">
@@ -81,7 +81,7 @@ const MovieSearch: React.FC<MovieSearchProps> = ({ data, currentPage }) => {
         />
       </div>
     </div>
-  );
+  )
 }
 
 export default MovieSearch
