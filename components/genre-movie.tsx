@@ -17,9 +17,14 @@ import { IoTimerOutline } from 'react-icons/io5'
 type GenreMovieProps = {
   data: any
   currentPage: number
+  breadCrumbTitle?: string
 }
 
-const GenreMovie: React.FC<GenreMovieProps> = ({ data, currentPage }) => {
+const GenreMovie: React.FC<GenreMovieProps> = ({
+  data,
+  currentPage,
+  breadCrumbTitle,
+}) => {
   const pagination = data?.paginate
   const router = useRouter()
   const pathName = usePathname()
@@ -40,7 +45,7 @@ const GenreMovie: React.FC<GenreMovieProps> = ({ data, currentPage }) => {
           <BreadcrumbSeparator />
           <BreadcrumbItem>
             <BreadcrumbPage className="text-gray-500">
-              Genre Movie
+              {breadCrumbTitle || 'Genre Movie'}
             </BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>

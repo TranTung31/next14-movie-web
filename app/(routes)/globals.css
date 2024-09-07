@@ -66,24 +66,4 @@
   body {
     @apply bg-background text-foreground;
   }
-
-  ::-webkit-scrollbar {
-    @apply w-2 h-3 bg-transparent; /* Chiều rộng của thanh cuộn */
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-slate-500 rounded-md shadow-sm; /* Kiểu dáng của thanh kéo */
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-gray-600; /* Hiệu ứng khi di chuột vào thanh kéo */
-  }
-
-  ::-webkit-scrollbar-thumb:active {
-    @apply bg-gray-600; /* Hiệu ứng khi nhấn vào thanh kéo */
-  }
-
-  ::-webkit-scrollbar-track {
-    @apply bg-white; /* Màu nền của rãnh */
-  }
 }
