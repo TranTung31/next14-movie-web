@@ -1,6 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel'
 import Link from 'next/link'
 import { FaArrowRight } from 'react-icons/fa6'
 import { IoTimerOutline } from 'react-icons/io5'
@@ -21,40 +28,53 @@ const TrendingMovie: React.FC<TrendingMovieType> = ({ data }) => {
         </Link>
       </div>
 
-      <div className="flex gap-10 overflow-x-auto whitespace-nowrap mb-5 py-5">
-        {data?.items?.map((item: any, index: number) => (
-          <Link key={index} href={`/movie/${item?.slug}`}>
-            <div
-              className="flex flex-col gap-5 min-w-[320px] h-fit relative cursor-pointer"
-            >
-              <div className="overflow-hidden rounded-md">
-                <img
-                  src={item?.poster_url}
-                  alt={item?.name}
-                  width={320}
-                  className="object-cover transition transform h-[260px] hover:scale-110"
-                />
-              </div>
-              <div className="flex items-center justify-between max-w-[320px]">
-                <p className="text-white text-base w-[50%] overflow-hidden text-ellipsis">
-                  {item?.name}
-                </p>
-                <div className="flex justify-end gap-2 pl-2">
-                  <p className="text-white text-sm p-2 rounded-md bg-red-500">
-                    {item?.quality}
-                  </p>
-                  <p className="text-white text-sm p-2 rounded-md bg-red-500">
-                    {item?.language}
-                  </p>
+      <div className="px-12 sm:px-12 lg:px-0 py-5">
+        <Carousel
+          opts={{
+            align: 'start',
+          }}
+          className="w-full max-w-full"
+        >
+          <CarouselContent>
+            {data?.items?.map((item: any, index: number) => (
+              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
+                <div className="p-1">
+                  <Link key={index} href={`/movie/${item?.slug}`}>
+                    <div className="flex flex-col gap-5 min-w-[200px] md:min-w-[368px] h-fit relative cursor-pointer">
+                      <div className="">
+                        <img
+                          src={item?.poster_url}
+                          alt={item?.name}
+                          width={368}
+                          className="object-cover h-[260px] rounded-md"
+                        />
+                      </div>
+                      <div className="flex items-center justify-between max-w-[200px] md:max-w-[368px]">
+                        <p className="text-white text-base w-[50%] overflow-hidden text-ellipsis">
+                          {item?.name}
+                        </p>
+                        <div className="flex justify-end gap-2 pl-2">
+                          <p className="text-white text-sm p-2 rounded-md bg-red-500">
+                            {item?.quality}
+                          </p>
+                          <p className="text-white text-sm p-2 rounded-md bg-red-500">
+                            {item?.language}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="absolute top-2 left-2 flex items-center gap-1 text-white text-sm bg-gradient-to-t from-transparent to-gray-400">
+                        <IoTimerOutline className="text-[18px]" />
+                        <p>{item?.time}</p>
+                      </div>
+                    </div>
+                  </Link>
                 </div>
-              </div>
-              <div className="absolute top-2 left-2 flex items-center gap-1 text-white text-sm bg-gradient-to-t from-transparent to-gray-400">
-                <IoTimerOutline className="text-[18px]" />
-                <p>{item?.time}</p>
-              </div>
-            </div>
-          </Link>
-        ))}
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
       </div>
     </div>
   )

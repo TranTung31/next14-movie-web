@@ -38,8 +38,11 @@ const GenreMovie: React.FC<GenreMovieProps> = ({
       <Breadcrumb className="mb-5">
         <BreadcrumbList className="text-white text-base">
           <BreadcrumbItem>
-            <BreadcrumbLink className="hover:text-gray-300">
-              <Link href="/">Home</Link>
+            <BreadcrumbLink
+              className="hover:text-gray-300"
+              onClick={() => router.push('/')}
+            >
+              Home
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
