@@ -9,6 +9,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel'
 import { formatDateTimeDMY } from '@/lib/common'
+import Autoplay from 'embla-carousel-autoplay'
 import Link from 'next/link'
 import React from 'react'
 
@@ -26,7 +27,13 @@ const RecentlyMovie: React.FC<RecentlyMovieType> = ({ data }) => {
         <Carousel
           opts={{
             align: 'start',
+            loop: true,
           }}
+          plugins={[
+            Autoplay({
+              delay: 4000,
+            }),
+          ]}
           className="w-full max-w-full"
         >
           <CarouselContent>

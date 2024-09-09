@@ -25,7 +25,7 @@ const ListMovie: React.FC<ListMovieType> = ({ data, title, viewAll }) => {
         <h1 className="font-semibold text-white text-lg py-2">{title}</h1>
         <Link href={viewAll}>
           <div className="flex items-center gap-2 text-[#95a5a6] text-lg cursor-pointer hover:opacity-85">
-            <span>View all</span> <FaArrowRight />
+            <span>Xem tất cả</span> <FaArrowRight />
           </div>
         </Link>
       </div>
@@ -42,7 +42,7 @@ const ListMovie: React.FC<ListMovieType> = ({ data, title, viewAll }) => {
               <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
                 <div className="p-1">
                   <Link href={`/movie/${item?.slug}`} key={index}>
-                    <div className="flex flex-col gap-5 min-w-[200px] md:min-w-[368px] h-fit relative cursor-pointer">
+                    <div className="flex flex-col gap-5 max-w-[200px] md:max-w-[368px] h-fit relative cursor-pointer">
                       <div className="">
                         <img
                           src={item?.thumb_url}

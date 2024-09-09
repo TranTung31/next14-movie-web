@@ -6,7 +6,7 @@ const MovieDetailPage = async ({ params }: { params: { slug: string } }) => {
   const dataMovieDetail = await getMovieDetail(params?.slug)
 
   return (
-    <div className="w-full bg-[#181818] px-1 lg:px-20 py-10">
+    <div className="w-full bg-[#181818] px-5 py-10 lg:px-20">
       <MovieDetail data={dataMovieDetail} />
     </div>
   )

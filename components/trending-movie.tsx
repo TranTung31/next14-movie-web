@@ -23,7 +23,7 @@ const TrendingMovie: React.FC<TrendingMovieType> = ({ data }) => {
         <h1 className="font-semibold text-white text-lg py-2">Phim xu hướng</h1>
         <Link href="/genre/phim-dang-chieu?page=1">
           <div className="flex items-center gap-2 text-[#95a5a6] text-lg cursor-pointer hover:opacity-85">
-            <span>View all</span> <FaArrowRight />
+            <span>Xem tất cả</span> <FaArrowRight />
           </div>
         </Link>
       </div>
@@ -35,12 +35,15 @@ const TrendingMovie: React.FC<TrendingMovieType> = ({ data }) => {
           }}
           className="w-full max-w-full"
         >
-          <CarouselContent>
+          <CarouselContent className="-ml-4">
             {data?.items?.map((item: any, index: number) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
+              <CarouselItem
+                key={index}
+                className="md:basis-1/2 lg:basis-1/4 pl-4"
+              >
                 <div className="p-1">
                   <Link key={index} href={`/movie/${item?.slug}`}>
-                    <div className="flex flex-col gap-5 min-w-[200px] md:min-w-[368px] h-fit relative cursor-pointer">
+                    <div className="flex flex-col gap-5 max-w-[200px] md:max-w-[368px] h-fit relative cursor-pointer">
                       <div className="">
                         <img
                           src={item?.poster_url}
