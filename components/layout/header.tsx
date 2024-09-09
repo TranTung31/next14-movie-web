@@ -19,7 +19,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet'
-import { movieCountries, movieGenres } from '@/lib/constants'
+import { movieCountries, movieGenres, movieYears } from '@/lib/constants'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -30,6 +30,7 @@ const Header = () => {
   const [searchValue, setSearchValue] = useState('')
   const [isShowGenre, setIsShowGenre] = useState(false)
   const [isShowCountry, setIsShowCountry] = useState(false)
+  const [isShowYear, setIsShowYear] = useState(false)
   const [isShowSearchMobile, setIsShowSearchMobile] = useState(false)
 
   const router = useRouter()
@@ -140,6 +141,25 @@ const Header = () => {
                           </ul>
                         )}
                       </li>
+                      <li className="w-full">
+                        <div className="flex items-center justify-center gap-3 cursor-pointer">
+                          <span onClick={() => setIsShowYear(!isShowYear)}>
+                            Năm
+                          </span>
+                          {isShowYear ? <FaAngleDown /> : <FaAngleRight />}
+                        </div>
+                        {isShowYear && (
+                          <ul className="grid grid-cols-2 gap-2 mt-5">
+                            {movieYears.map((item, index) => (
+                              <Link key={index} href={item.href}>
+                                <div className="px-3 py-2 bg-zinc-700 rounded-md text-gray-400">
+                                  {item.title}
+                                </div>
+                              </Link>
+                            ))}
+                          </ul>
+                        )}
+                      </li>
                     </ul>
                   </SheetDescription>
                 </SheetHeader>
@@ -211,6 +231,30 @@ const Header = () => {
                       <NavigationMenuContent className="absolute z-10 bg-[#181818] text-white">
                         <ul className="grid w-[400px] gap-3 p-4 md:grid-cols-3">
                           {movieCountries.map((item) => (
+                            <ListItem
+                              key={item.title}
+                              title={item.title}
+                              href={item.href}
+                            >
+                              {item?.description}
+                            </ListItem>
+                          ))}
+                        </ul>
+                      </NavigationMenuContent>
+                    </NavigationMenuItem>
+                  </NavigationMenuList>
+                </NavigationMenu>
+              </li>
+              <li>
+                <NavigationMenu>
+                  <NavigationMenuList>
+                    <NavigationMenuItem>
+                      <NavigationMenuTrigger className="bg-transparent text-base font-normal">
+                        Năm
+                      </NavigationMenuTrigger>
+                      <NavigationMenuContent className="absolute z-10 bg-[#181818] text-white">
+                        <ul className="grid w-[400px] gap-3 p-4 md:grid-cols-3">
+                          {movieYears.map((item) => (
                             <ListItem
                               key={item.title}
                               title={item.title}

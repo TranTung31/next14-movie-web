@@ -53,3 +53,11 @@ export const getCountryMovie = async (country: string, page: string = '1') => {
 
   return res?.json()
 }
+
+export const getYearMovie = async (year: string, page: string = '1') => {
+  const res = await fetch(
+    `${API_ROOT}/api/films/nam-phat-hanh/${year}?page=${page}`
+  )
+
+  return res.json()
+}

@@ -42,13 +42,13 @@ const GenreMovie: React.FC<GenreMovieProps> = ({
               className="hover:text-gray-300"
               onClick={() => router.push('/')}
             >
-              Home
+              Trang chủ
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
             <BreadcrumbPage className="text-gray-500">
-              {breadCrumbTitle || 'Genre Movie'}
+              {breadCrumbTitle || 'Phim theo thể loại'}
             </BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>

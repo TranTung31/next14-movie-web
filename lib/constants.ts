@@ -185,3 +185,94 @@ export const movieCountries: {
     href: '/country/quoc-gia-khac?page=1',
   },
 ]
+
+export const movieYears: {
+  title: string
+  href: string
+  description?: string
+}[] = [
+  {
+    title: '2004',
+    href: '/year/2004?page=1',
+  },
+  {
+    title: '2005',
+    href: '/year/2005?page=1',
+  },
+  {
+    title: '2006',
+    href: '/year/2006?page=1',
+  },
+  {
+    title: '2007',
+    href: '/year/2007?page=1',
+  },
+  {
+    title: '2008',
+    href: '/year/2008?page=1',
+  },
+  {
+    title: '2009',
+    href: '/year/2009?page=1',
+  },
+  {
+    title: '2010',
+    href: '/year/2010?page=1',
+  },
+  {
+    title: '2011',
+    href: '/year/2011?page=1',
+  },
+  {
+    title: '2012',
+    href: '/year/2012?page=1',
+  },
+  {
+    title: '2013',
+    href: '/year/2013?page=1',
+  },
+  {
+    title: '2014',
+    href: '/year/2014?page=1',
+  },
+  {
+    title: '2015',
+    href: '/year/2015?page=1',
+  },
+  {
+    title: '2016',
+    href: '/year/2016?page=1',
+  },
+  {
+    title: '2017',
+    href: '/year/2017?page=1',
+  },
+  {
+    title: '2018',
+    href: '/year/2018?page=1',
+  },
+  {
+    title: '2019',
+    href: '/year/2019?page=1',
+  },
+  {
+    title: '2020',
+    href: '/year/2020?page=1',
+  },
+  {
+    title: '2021',
+    href: '/year/2021?page=1',
+  },
+  {
+    title: '2022',
+    href: '/year/2022?page=1',
+  },
+  {
+    title: '2023',
+    href: '/year/2023?page=1',
+  },
+  {
+    title: '2024',
+    href: '/year/2024?page=1',
+  },
+]
