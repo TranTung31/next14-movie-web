@@ -58,7 +58,7 @@ const MovieDetail: React.FC<MovieDetailType> = ({ data }) => {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <div className="flex flex-col md:flex-row gap-5">
+      <div className="flex flex-col gap-5 md:gap-0 md:flex-row justify-between">
         <div className="min-w-[310px] md:min-w-[360px]">
           <img
             src={movie?.thumb_url}
@@ -74,7 +74,7 @@ const MovieDetail: React.FC<MovieDetailType> = ({ data }) => {
               <span>-</span>
               <h2>{movie?.original_name}</h2>
             </div>
-            <Button className="bg-red-500 text-white hover:bg-red-300">
+            <Button className="bg-red-500 text-white hover:bg-red-600">
               <FaPlus /> &nbsp; Thêm vào yêu thích
             </Button>
           </div>
@@ -151,7 +151,7 @@ const MovieDetail: React.FC<MovieDetailType> = ({ data }) => {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 export default MovieDetail

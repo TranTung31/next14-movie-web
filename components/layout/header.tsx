@@ -54,20 +54,20 @@ const Header = () => {
       <div className="relative overflow-visible min-h-[80px] bg-[#2c3e50] px-5 lg:px-20 py-5 flex items-center justify-between whitespace-nowrap text-white">
         <div className="flex items-center gap-5">
           {/* Navigation Mobile */}
-          <div className="block lg:hidden text-2xl cursor-pointer">
+          <div className="block lg:hidden text-2xl cursor-pointer ">
             <Sheet>
               <SheetTrigger>
                 <AiOutlineAlignLeft />
               </SheetTrigger>
               <SheetContent
                 side="left"
-                className="bg-[#181818] text-white text-base"
+                className="bg-[#181818] text-white text-base overflow-auto"
               >
-                <SheetHeader className="">
-                  <SheetTitle className="text-white my-5">
+                <SheetHeader>
+                  <SheetTitle className="text-white my-5 text-center">
                     Danh mục thể loại phim
                   </SheetTitle>
-                  <SheetDescription className="text-white text-lg h-screen overflow-auto">
+                  <SheetDescription className="text-white text-lg">
                     <ul className="flex flex-col items-center gap-5 h-full">
                       <li>
                         <Link
@@ -102,10 +102,11 @@ const Header = () => {
                         </Link>
                       </li>
                       <li className="w-full">
-                        <div className="flex items-center justify-center gap-3 cursor-pointer">
-                          <span onClick={() => setIsShowGenre(!isShowGenre)}>
-                            Thể loại
-                          </span>
+                        <div
+                          className="flex items-center justify-center gap-3 cursor-pointer"
+                          onClick={() => setIsShowGenre(!isShowGenre)}
+                        >
+                          <span>Thể loại</span>
                           {isShowGenre ? <FaAngleDown /> : <FaAngleRight />}
                         </div>
                         {isShowGenre && (
@@ -121,12 +122,11 @@ const Header = () => {
                         )}
                       </li>
                       <li className="w-full">
-                        <div className="flex items-center justify-center gap-3 cursor-pointer">
-                          <span
-                            onClick={() => setIsShowCountry(!isShowCountry)}
-                          >
-                            Quốc gia
-                          </span>
+                        <div
+                          className="flex items-center justify-center gap-3 cursor-pointer"
+                          onClick={() => setIsShowCountry(!isShowCountry)}
+                        >
+                          <span>Quốc gia</span>
                           {isShowCountry ? <FaAngleDown /> : <FaAngleRight />}
                         </div>
                         {isShowCountry && (
@@ -142,10 +142,11 @@ const Header = () => {
                         )}
                       </li>
                       <li className="w-full">
-                        <div className="flex items-center justify-center gap-3 cursor-pointer">
-                          <span onClick={() => setIsShowYear(!isShowYear)}>
-                            Năm
-                          </span>
+                        <div
+                          className="flex items-center justify-center gap-3 cursor-pointer"
+                          onClick={() => setIsShowYear(!isShowYear)}
+                        >
+                          <span>Năm</span>
                           {isShowYear ? <FaAngleDown /> : <FaAngleRight />}
                         </div>
                         {isShowYear && (
@@ -281,7 +282,7 @@ const Header = () => {
           <div className="flex items-center relative">
             {/* Search PC */}
             <Input
-              className="hidden lg:block w-[370px] mx-3 text-black"
+              className="hidden lg:block w-[370px] text-black"
               placeholder="Tìm kiếm phim..."
               onChange={handleOnChangeSearch}
               onKeyDown={handleSearch}
