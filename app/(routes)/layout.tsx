@@ -1,4 +1,5 @@
 import Header from '@/components/layout/header'
+import { Analytics } from '@vercel/analytics/react'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import NextTopLoader from 'nextjs-toploader'
@@ -22,6 +23,7 @@ export default function RootLayout({
         <NextTopLoader />
         <Header />
         {children}
+        <Analytics />
       </body>
     </html>
   )
