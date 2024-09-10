@@ -53,7 +53,7 @@ const GenreMovie: React.FC<GenreMovieProps> = ({
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <div className="flex flex-wrap gap-8 justify-center md:justify-normal">
+      <div className="flex flex-wrap gap-8 justify-center">
         {data?.items?.map((item: any, index: number) => (
           <Link href={`/movie/${item?.slug}`} key={index}>
             <div className="flex flex-col gap-3 min-w-[200px] h-fit relative cursor-pointer">

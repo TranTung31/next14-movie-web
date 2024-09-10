@@ -35,19 +35,22 @@ const MovieSearch: React.FC<MovieSearchProps> = ({ data, currentPage }) => {
       <Breadcrumb className="mb-5">
         <BreadcrumbList className="text-white text-base">
           <BreadcrumbItem>
-            <BreadcrumbLink className="hover:text-gray-300">
-              <Link href="/">Home</Link>
+            <BreadcrumbLink
+              className="hover:text-gray-300 cursor-pointer"
+              onClick={() => router.push('/')}
+            >
+              Trang chủ
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
             <BreadcrumbPage className="text-gray-500">
-              Movie Search
+              Danh sách phim
             </BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <div className="flex flex-wrap gap-8 justify-center md:justify-normal">
+      <div className="flex flex-wrap gap-8 justify-center">
         {data?.items?.map((item: any, index: number) => (
           <Link href={`/movie/${item?.slug}`} key={index}>
             <div className="flex flex-col gap-3 min-w-[200px] h-fit relative cursor-pointer">
