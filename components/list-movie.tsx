@@ -21,8 +21,10 @@ type ListMovieType = {
 const ListMovie: React.FC<ListMovieType> = ({ data, title, viewAll }) => {
   return (
     <div className="">
-      <div className="flex items-center justify-between">
-        <h1 className="font-semibold text-white text-lg py-2">{title}</h1>
+      <div className="flex items-center justify-between py-2">
+        <h1 className="font-semibold text-white text-lg pl-2 border-solid border-l-4 border-[#408BEA]">
+          {title}
+        </h1>
         <Link href={viewAll}>
           <div className="flex items-center gap-2 text-[#95a5a6] text-lg cursor-pointer hover:opacity-85">
             <span>Xem tất cả</span> <FaArrowRight />
@@ -52,7 +54,7 @@ const ListMovie: React.FC<ListMovieType> = ({ data, title, viewAll }) => {
                         />
                       </div>
                       <div className="flex items-center justify-between max-w-[200px] md:max-w-[368px]">
-                        <p className="text-white text-base w-[50%] overflow-hidden text-ellipsis">
+                        <p className="text-white text-sm md:text-base w-[50%] overflow-hidden text-ellipsis">
                           {item?.name}
                         </p>
                         <div className="flex justify-end gap-2 pl-2">

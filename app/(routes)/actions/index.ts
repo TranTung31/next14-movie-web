@@ -34,7 +34,7 @@ export const getMovieDetail = async (name: string) => {
   return res.json()
 }
 
-export const getMovieSearch = async (keyword: string = '', page: string) => {
+export const getMovieSearch = async (keyword: string = '', page?: string) => {
   const res = await fetch(
     `${
       envConfig?.NEXT_PUBLIC_API_ROOT

@@ -25,7 +25,7 @@ export default async function Home() {
           height="100%"
         />
       </div>
-      <div className="w-full h-auto bg-[#181818] px-5 lg:px-20 py-10">
+      <div className="w-full h-auto bg-[#181818] px-5 md:px-20 pt-5 md:py-10">
         <RecentlyMovie data={dataRecently} />
         <TrendingMovie data={dataTrending} />
         <ListMovie
