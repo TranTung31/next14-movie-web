@@ -1,13 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 
-import { Button } from '@/components/ui/button'
-import { formatDateTimeDMY } from '@/lib/common'
-import { MdDateRange } from 'react-icons/md'
-import { IoTimerOutline } from 'react-icons/io5'
-import { useEffect, useState } from 'react'
-import Link from 'next/link'
-import { FaPlus } from 'react-icons/fa6'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -16,6 +9,14 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
+import { Button } from '@/components/ui/button'
+import { formatDateTimeDMY } from '@/lib/common'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { FaPlus } from 'react-icons/fa6'
+import { IoTimerOutline } from 'react-icons/io5'
+import { MdDateRange } from 'react-icons/md'
 
 type MovieDetailType = {
   data: any
@@ -24,6 +25,9 @@ type MovieDetailType = {
 const MovieDetail: React.FC<MovieDetailType> = ({ data }) => {
   const [country, setCountry] = useState<string>('')
   const [genre, setGenre] = useState<string>('')
+
+  const router = useRouter()
+
   const movie = data?.movie
   const episodes = movie?.episodes[0]?.items
   const categoryKeys = Object.keys(movie?.category)
@@ -48,8 +52,13 @@ const MovieDetail: React.FC<MovieDetailType> = ({ data }) => {
       <Breadcrumb className="mb-5">
         <BreadcrumbList className="text-white text-base">
           <BreadcrumbItem>
-            <BreadcrumbLink className="hover:text-gray-300">
-              <Link href="/">Trang chủ</Link>
+            <BreadcrumbLink
+              className="hover:text-gray-300 cursor-pointer"
+              onClick={() => {
+                router.push('/')
+              }}
+            >
+              Trang chủ
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
