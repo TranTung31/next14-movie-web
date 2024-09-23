@@ -10,7 +10,6 @@ import {
 } from '@/components/ui/carousel'
 import Link from 'next/link'
 import { FaArrowRight } from 'react-icons/fa6'
-import { IoTimerOutline } from 'react-icons/io5'
 
 type TrendingMovieType = {
   data: any
@@ -20,17 +19,17 @@ const TrendingMovie: React.FC<TrendingMovieType> = ({ data }) => {
   return (
     <div className="">
       <div className="flex items-center justify-between py-2">
-        <h1 className="font-semibold text-white text-lg pl-2 border-solid border-l-4 border-[#408BEA]">
+        <h1 className="border-l-4 border-solid border-[#408BEA] pl-2 text-lg font-semibold text-white">
           Phim xu hướng
         </h1>
         <Link href="/genre/phim-dang-chieu?page=1">
-          <div className="flex items-center gap-2 text-[#95a5a6] text-lg cursor-pointer hover:opacity-85">
+          <div className="flex cursor-pointer items-center gap-2 text-lg text-[#95a5a6] hover:opacity-85">
             <span>Xem tất cả</span> <FaArrowRight />
           </div>
         </Link>
       </div>
 
-      <div className="px-12 sm:px-12 lg:px-0 py-5">
+      <div className="px-12 pb-5 pt-2 sm:px-12 lg:px-0">
         <Carousel
           opts={{
             align: 'start',
@@ -41,35 +40,30 @@ const TrendingMovie: React.FC<TrendingMovieType> = ({ data }) => {
             {data?.items?.map((item: any, index: number) => (
               <CarouselItem
                 key={index}
-                className="md:basis-1/2 lg:basis-1/4 pl-4"
+                className="pl-4 md:basis-1/2 lg:basis-1/4"
               >
                 <div className="p-1">
                   <Link key={index} href={`/movie/${item?.slug}`}>
-                    <div className="flex flex-col gap-5 max-w-[200px] md:max-w-[368px] h-fit relative cursor-pointer">
-                      <div className="">
+                    <div className="relative flex h-fit max-w-[200px] cursor-pointer flex-col gap-3 rounded-md bg-[#282828] pb-2 text-white md:max-w-[368px]">
+                      <div className="overflow-hidden rounded-tl-md rounded-tr-md">
                         <img
                           src={item?.poster_url}
                           alt={item?.name}
                           width={368}
-                          className="object-cover h-[260px] rounded-md"
+                          className="h-[260px] object-cover object-center duration-200 ease-in hover:scale-105"
                         />
                       </div>
-                      <div className="flex items-center justify-between max-w-[200px] md:max-w-[368px]">
-                        <p className="text-white text-sm md:text-base w-[50%] overflow-hidden text-ellipsis">
+                      <div className="flex max-w-[200px] flex-col gap-1 px-2 md:max-w-[368px]">
+                        <h3 className="truncate text-[15px] font-medium text-white">
                           {item?.name}
-                        </p>
-                        <div className="flex justify-end gap-2 pl-2">
-                          <p className="text-white text-sm p-2 rounded-md bg-red-500">
-                            {item?.quality}
-                          </p>
-                          <p className="text-white text-sm p-2 rounded-md bg-red-500">
-                            {item?.language}
-                          </p>
-                        </div>
+                        </h3>
+                        <span className="truncate text-sm font-medium text-gray-400">
+                          {item?.original_name}
+                        </span>
                       </div>
-                      <div className="absolute top-2 left-2 flex items-center gap-1 text-white text-sm bg-gradient-to-t from-transparent to-gray-400">
-                        <IoTimerOutline className="text-[18px]" />
-                        <p>{item?.time}</p>
+                      <div className="absolute top-2 flex items-center gap-1 rounded-br-md rounded-tr-md bg-[#a3765d] px-1 py-[3px] text-xs font-medium">
+                        <p>{item?.current_episode}</p>
+                        <p>{item?.language}</p>
                       </div>
                     </div>
                   </Link>

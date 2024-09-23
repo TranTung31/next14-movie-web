@@ -21,11 +21,11 @@ const RecentlyMovie: React.FC<RecentlyMovieType> = ({ data }) => {
   return (
     <div className="recently-movie">
       <header className="py-2">
-        <h1 className="font-semibold text-white text-lg pl-2 border-solid border-l-4 border-[#408BEA]">
+        <h1 className="border-l-4 border-solid border-[#408BEA] pl-2 text-lg font-semibold text-white">
           Phim mới cập nhật
         </h1>
       </header>
-      <div className="px-12 sm:px-12 lg:px-0 py-5">
+      <div className="px-12 pb-5 pt-2 sm:px-12 lg:px-0">
         <Carousel
           opts={{
             align: 'start',
@@ -33,7 +33,7 @@ const RecentlyMovie: React.FC<RecentlyMovieType> = ({ data }) => {
           }}
           plugins={[
             Autoplay({
-              delay: 4000,
+              delay: 6000,
             }),
           ]}
           className="w-full max-w-full"
@@ -43,19 +43,19 @@ const RecentlyMovie: React.FC<RecentlyMovieType> = ({ data }) => {
               <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/6">
                 <div className="p-1">
                   <Link key={index} href={`/movie/${item?.slug}`}>
-                    <div className="flex gap-5 min-w-[220px] max-w-[220px] h-[120px] cursor-pointer">
-                      <div className="overflow-hidden min-w-[80px] rounded-md">
+                    <div className="flex h-[120px] min-w-[220px] max-w-[220px] cursor-pointer gap-5 text-white">
+                      <div className="min-w-[80px] overflow-hidden rounded-md">
                         <img
                           src={item?.thumb_url}
                           alt={item?.name}
-                          className="object-cover max-w-[80px] min-h-[120px] transition transform hover:scale-110"
+                          className="min-h-[120px] max-w-[80px] object-cover duration-200 ease-in hover:scale-110"
                         />
                       </div>
                       <div className="flex flex-col gap-2 overflow-hidden">
-                        <p className="text-white text-sm overflow-hidden text-ellipsis">
+                        <p className="truncate text-sm font-medium">
                           {item?.name}
                         </p>
-                        <p className="text-white text-sm">
+                        <p className="text-sm">
                           {formatDateTimeDMY(item?.modified)}
                         </p>
                       </div>
