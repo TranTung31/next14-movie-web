@@ -33,10 +33,10 @@ const MovieSearch: React.FC<MovieSearchProps> = ({ data, currentPage }) => {
   return (
     <div className="text-white">
       <Breadcrumb className="mb-5">
-        <BreadcrumbList className="text-white text-base">
+        <BreadcrumbList className="text-base text-white">
           <BreadcrumbItem>
             <BreadcrumbLink
-              className="hover:text-gray-300 cursor-pointer"
+              className="cursor-pointer hover:text-gray-300"
               onClick={() => router.push('/')}
             >
               Trang chủ
@@ -50,29 +50,27 @@ const MovieSearch: React.FC<MovieSearchProps> = ({ data, currentPage }) => {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <div className="flex flex-wrap gap-8 justify-center">
+      <div className="flex flex-wrap justify-center gap-8">
         {data?.items?.map((item: any, index: number) => (
           <Link href={`/movie/${item?.slug}`} key={index}>
-            <div className="flex flex-col gap-3 min-w-[200px] h-fit relative cursor-pointer">
+            <div className="relative flex h-fit min-w-[200px] cursor-pointer flex-col gap-3 text-white">
               <div className="overflow-hidden rounded-md">
                 <img
                   src={item?.thumb_url}
                   alt={item?.name}
                   width={200}
-                  className="object-cover transition transform h-[300px] hover:scale-110"
+                  className="h-[300px] object-cover duration-200 ease-in hover:scale-105"
                 />
               </div>
-              <div className="flex items-center max-w-[200px]">
-                <p className="text-white text-base w-full whitespace-nowrap overflow-hidden text-ellipsis">
+              <div className="flex max-w-[200px] items-center">
+                <h3 className="truncate text-[15px] font-medium">
                   {item?.name}
-                </p>
+                </h3>
               </div>
-              {item?.time && (
-                <div className="absolute top-2 left-2 flex items-center gap-1 text-white text-sm bg-gradient-to-t from-transparent to-gray-400">
-                  <IoTimerOutline className="text-[18px]" />
-                  <p>{item?.time}</p>
-                </div>
-              )}
+              <div className="absolute top-2 flex items-center gap-1 rounded-br-md rounded-tr-md bg-[#a3765d] px-1 py-[3px] text-xs font-medium">
+                <p>{item?.current_episode}</p>
+                <p>{item?.language}</p>
+              </div>
             </div>
           </Link>
         ))}

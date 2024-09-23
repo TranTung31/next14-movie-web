@@ -8,6 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
+import { formatServerUrl } from '@/lib/common'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
@@ -22,21 +23,26 @@ const MovieWatch: React.FC<MovieWatchProps> = ({ data }) => {
   const searchParams = useSearchParams()
 
   const movie = data?.movie
-  const episodes = movie?.episodes[0]?.items
-  const episode = searchParams.get('episode')
+  const episodesArr = movie?.episodes
+  const episodeSearchParam = searchParams.get('episode')
+  const serverSearchParam = searchParams.get('server')
 
   useEffect(() => {
-    episodes?.forEach((item: any) => {
-      if (item?.name === episode) {
-        setLinkEmbed(item?.embed)
+    episodesArr?.forEach((episode: any) => {
+      if (formatServerUrl(episode?.server_name) === serverSearchParam) {
+        episode?.items?.forEach((item: any) => {
+          if (item?.name === episodeSearchParam) {
+            setLinkEmbed(item?.embed)
+          }
+        })
       }
     })
-  }, [episodes, episode])
+  }, [episodesArr, episodeSearchParam, serverSearchParam])
 
   return (
     <div className="">
       <Breadcrumb className="mb-5">
-        <BreadcrumbList className="text-white text-base">
+        <BreadcrumbList className="text-base text-white">
           <BreadcrumbItem>
             <BreadcrumbLink className="hover:text-gray-300">
               <Link href="/">Trang chủ</Link>
@@ -52,7 +58,7 @@ const MovieWatch: React.FC<MovieWatchProps> = ({ data }) => {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage className="text-gray-500">{`Tập ${episode}`}</BreadcrumbPage>
+            <BreadcrumbPage className="text-gray-500">{`Tập ${episodeSearchParam}`}</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
@@ -67,28 +73,33 @@ const MovieWatch: React.FC<MovieWatchProps> = ({ data }) => {
         />
       </div>
 
-      <div className="flex justify-center">
-        <div className="w-[100%] lg:w-[70%] mt-10 p-4 bg-[#222222] rounded-md">
-          <h1 className="text-white font-semibold pb-4">Danh sách tập:</h1>
-          <div className="flex flex-wrap gap-3 max-h-[500px] overflow-y-auto scroll-smooth">
-            {episodes?.map((item: any, index: number) => (
-              <Link
-                key={index}
-                href={`/watch/${movie?.slug}?episode=${item?.name}`}
-              >
-                <div
-                  className={`w-[100px] text-white text-center px-10 py-2 ${
-                    episode === item?.name
-                      ? 'bg-red-500 hover:bg-red-400'
-                      : 'bg-neutral-700 hover:bg-neutral-600'
-                  } rounded-md cursor-pointer transition`}
+      <div className="mt-10 w-[100%] rounded-md bg-[#222222] p-4">
+        <h1 className="pb-4 font-semibold text-white">Danh sách tập:</h1>
+        {episodesArr?.map((episode: any, index: number) => (
+          <div className="mb-3" key={index}>
+            <h3 className="pb-3">{`Server: ${episode?.server_name}`}</h3>
+            <div className="flex max-h-[500px] flex-wrap gap-3 overflow-y-auto scroll-smooth">
+              {episode?.items?.map((item: any, index: number) => (
+                <Link
+                  key={index}
+                  href={`/watch/${movie?.slug}?episode=${item?.name}&server=${formatServerUrl(episode?.server_name)}`}
                 >
-                  {item?.name}
-                </div>
-              </Link>
-            ))}
+                  <div
+                    className={`w-[90px] truncate px-5 py-1 text-center text-white ${
+                      episodeSearchParam === item?.name &&
+                      serverSearchParam ===
+                        formatServerUrl(episode?.server_name)
+                        ? 'bg-red-500 hover:bg-red-400'
+                        : 'bg-neutral-700 hover:bg-neutral-600'
+                    } cursor-pointer rounded-md transition`}
+                  >
+                    {item?.name}
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   )

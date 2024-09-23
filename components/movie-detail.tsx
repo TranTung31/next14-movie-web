@@ -10,7 +10,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 import { Button } from '@/components/ui/button'
-import { formatDateTimeDMY } from '@/lib/common'
+import { formatDateTimeDMY, formatServerUrl } from '@/lib/common'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -18,18 +18,18 @@ import { FaPlus } from 'react-icons/fa6'
 import { IoTimerOutline } from 'react-icons/io5'
 import { MdDateRange } from 'react-icons/md'
 
-type MovieDetailType = {
+type MovieDetailProps = {
   data: any
 }
 
-const MovieDetail: React.FC<MovieDetailType> = ({ data }) => {
+const MovieDetail: React.FC<MovieDetailProps> = ({ data }) => {
   const [country, setCountry] = useState<string>('')
   const [genre, setGenre] = useState<string>('')
 
   const router = useRouter()
 
   const movie = data?.movie
-  const episodes = movie?.episodes[0]?.items
+  const episodesArr = movie?.episodes
   const categoryKeys = Object.keys(movie?.category)
 
   useEffect(() => {
@@ -50,10 +50,10 @@ const MovieDetail: React.FC<MovieDetailType> = ({ data }) => {
   return (
     <div className="flex flex-col">
       <Breadcrumb className="mb-5">
-        <BreadcrumbList className="text-white text-base">
+        <BreadcrumbList className="text-base text-white">
           <BreadcrumbItem>
             <BreadcrumbLink
-              className="hover:text-gray-300 cursor-pointer"
+              className="cursor-pointer hover:text-gray-300"
               onClick={() => {
                 router.push('/')
               }}
@@ -67,18 +67,18 @@ const MovieDetail: React.FC<MovieDetailType> = ({ data }) => {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <div className="flex flex-col gap-5 md:gap-0 md:flex-row justify-between">
+      <div className="flex flex-col justify-between gap-5 md:flex-row md:gap-0">
         <div className="min-w-[310px] md:min-w-[360px]">
           <img
             src={movie?.thumb_url}
             alt={movie?.name}
-            className="object-cover md:w-[360px] h-[576px] rounded-md"
+            className="h-[576px] rounded-md object-cover md:w-[360px]"
           />
         </div>
 
-        <div className="flex flex-col gap-5 min-w-[310px] md:max-w-[560px] xl:min-w-[960px]">
+        <div className="flex min-w-[310px] flex-col gap-5 md:max-w-[560px] xl:min-w-[960px]">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3 text-white text-lg font-semibold">
+            <div className="flex items-center gap-3 text-lg font-semibold text-white">
               <h2>{movie?.name}</h2>
               <span>-</span>
               <h2>{movie?.original_name}</h2>
@@ -88,22 +88,22 @@ const MovieDetail: React.FC<MovieDetailType> = ({ data }) => {
             </Button>
           </div>
 
-          <div className="flex items-center gap-3 flex-wrap text-white">
-            <div className="text-black font-semibold text-sm p-2 rounded-md bg-white">
+          <div className="flex flex-wrap items-center gap-3 text-white">
+            <div className="rounded-md bg-white p-2 text-sm font-semibold text-black">
               {movie?.quality}
             </div>
-            <div className="text-black font-semibold text-sm p-2 rounded-md bg-white">
+            <div className="rounded-md bg-white p-2 text-sm font-semibold text-black">
               {movie?.language}
             </div>
-            <div className="text-black font-semibold text-sm p-2 rounded-md bg-white">
+            <div className="rounded-md bg-white p-2 text-sm font-semibold text-black">
               {movie?.current_episode}
             </div>
-            <div className="text-white flex gap-1 items-center">
+            <div className="flex items-center gap-1 text-white">
               <MdDateRange className="text-[18px]" />
               <p>{formatDateTimeDMY(movie?.created)}</p>
             </div>
             {movie?.time && (
-              <div className="text-white flex gap-1 items-center">
+              <div className="flex items-center gap-1 text-white">
                 <IoTimerOutline className="text-[18px]" />
                 <p>{movie?.time}</p>
               </div>
@@ -144,20 +144,25 @@ const MovieDetail: React.FC<MovieDetailType> = ({ data }) => {
         </div>
       </div>
 
-      <div className="w-[100%] lg:w-[70%] mt-10 p-4 bg-[#222222] rounded-md">
-        <h1 className="text-white font-semibold pb-4">Danh sách tập:</h1>
-        <div className="flex flex-wrap gap-3 max-h-[500px] overflow-y-auto scroll-smooth">
-          {episodes?.map((item: any, index: number) => (
-            <Link
-              key={index}
-              href={`/watch/${movie?.slug}?episode=${item?.name}`}
-            >
-              <div className="w-[100px] text-white text-center px-10 py-2 bg-neutral-700 rounded-md cursor-pointer hover:bg-neutral-600">
-                {item?.name}
-              </div>
-            </Link>
-          ))}
-        </div>
+      <div className="mt-10 w-[100%] rounded-md bg-[#222222] p-4 text-white">
+        <h1 className="pb-5 font-semibold">Danh sách tập:</h1>
+        {episodesArr?.map((episode: any, index: number) => (
+          <div className="mb-3" key={index}>
+            <h3 className="pb-3">{`Server: ${episode?.server_name}`}</h3>
+            <div className="flex max-h-[500px] flex-wrap gap-3 overflow-y-auto scroll-smooth">
+              {episode?.items?.map((item: any, index: number) => (
+                <Link
+                  key={index}
+                  href={`/watch/${movie?.slug}?episode=${item?.name}&server=${formatServerUrl(episode?.server_name)}`}
+                >
+                  <div className="w-[90px] cursor-pointer truncate rounded-md bg-neutral-700 px-5 py-1 text-center text-white hover:bg-neutral-600">
+                    {item?.name}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   )
