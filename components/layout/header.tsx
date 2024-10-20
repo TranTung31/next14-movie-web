@@ -66,6 +66,7 @@ const Header = () => {
     if (e.key === 'Enter' || e.keyCode === 13 || e.type === 'click') {
       if (searchValue) {
         router.push(`/search?keyword=${searchValue}`)
+        setIsTarget(false)
       } else {
         alert('Vui lòng nhập ký tự để tìm kiếm!')
       }
@@ -74,24 +75,24 @@ const Header = () => {
 
   return (
     <div className="flex flex-col justify-center">
-      <div className="relative overflow-visible min-h-[80px] bg-[#2c3e50] px-5 lg:px-20 py-5 flex items-center justify-between whitespace-nowrap text-white">
+      <div className="relative flex min-h-[80px] items-center justify-between overflow-visible whitespace-nowrap bg-[#2c3e50] px-5 py-5 text-white lg:px-20">
         <div className="flex items-center gap-5">
           {/* Navigation Mobile */}
-          <div className="block lg:hidden text-2xl cursor-pointer ">
+          <div className="block cursor-pointer text-2xl lg:hidden">
             <Sheet>
               <SheetTrigger>
                 <AiOutlineAlignLeft />
               </SheetTrigger>
               <SheetContent
                 side="left"
-                className="bg-[#181818] text-white text-base overflow-auto"
+                className="overflow-auto bg-[#181818] text-base text-white"
               >
                 <SheetHeader>
-                  <SheetTitle className="text-white my-5 text-center">
+                  <SheetTitle className="my-5 text-center text-white">
                     Danh mục thể loại phim
                   </SheetTitle>
-                  <SheetDescription className="text-white text-lg">
-                    <ul className="flex flex-col items-center gap-5 h-full">
+                  <SheetDescription className="text-lg text-white">
+                    <ul className="flex h-full flex-col items-center gap-5">
                       <li>
                         <Link
                           href="/genre/tv-shows?page=1"
@@ -126,17 +127,17 @@ const Header = () => {
                       </li>
                       <li className="w-full">
                         <div
-                          className="flex items-center justify-center gap-3 cursor-pointer"
+                          className="flex cursor-pointer items-center justify-center gap-3"
                           onClick={() => setIsShowGenre(!isShowGenre)}
                         >
                           <span>Thể loại</span>
                           {isShowGenre ? <FaAngleDown /> : <FaAngleRight />}
                         </div>
                         {isShowGenre && (
-                          <ul className="grid grid-cols-2 gap-2 mt-5">
+                          <ul className="mt-5 grid grid-cols-2 gap-2">
                             {movieGenres.map((item, index) => (
                               <Link key={index} href={item.href}>
-                                <div className="px-3 py-2 bg-zinc-700 rounded-md text-gray-400">
+                                <div className="rounded-md bg-zinc-700 px-3 py-2 text-gray-400">
                                   {item.title}
                                 </div>
                               </Link>
@@ -146,17 +147,17 @@ const Header = () => {
                       </li>
                       <li className="w-full">
                         <div
-                          className="flex items-center justify-center gap-3 cursor-pointer"
+                          className="flex cursor-pointer items-center justify-center gap-3"
                           onClick={() => setIsShowCountry(!isShowCountry)}
                         >
                           <span>Quốc gia</span>
                           {isShowCountry ? <FaAngleDown /> : <FaAngleRight />}
                         </div>
                         {isShowCountry && (
-                          <ul className="grid grid-cols-2 gap-2 mt-5">
+                          <ul className="mt-5 grid grid-cols-2 gap-2">
                             {movieCountries.map((item, index) => (
                               <Link key={index} href={item.href}>
-                                <div className="px-3 py-2 bg-zinc-700 rounded-md text-gray-400">
+                                <div className="rounded-md bg-zinc-700 px-3 py-2 text-gray-400">
                                   {item.title}
                                 </div>
                               </Link>
@@ -166,17 +167,17 @@ const Header = () => {
                       </li>
                       <li className="w-full">
                         <div
-                          className="flex items-center justify-center gap-3 cursor-pointer"
+                          className="flex cursor-pointer items-center justify-center gap-3"
                           onClick={() => setIsShowYear(!isShowYear)}
                         >
                           <span>Năm</span>
                           {isShowYear ? <FaAngleDown /> : <FaAngleRight />}
                         </div>
                         {isShowYear && (
-                          <ul className="grid grid-cols-2 gap-2 mt-5">
+                          <ul className="mt-5 grid grid-cols-2 gap-2">
                             {movieYears.map((item, index) => (
                               <Link key={index} href={item.href}>
-                                <div className="px-3 py-2 bg-zinc-700 rounded-md text-gray-400">
+                                <div className="rounded-md bg-zinc-700 px-3 py-2 text-gray-400">
                                   {item.title}
                                 </div>
                               </Link>
@@ -302,10 +303,10 @@ const Header = () => {
         </Link>
 
         <div className="text-white">
-          <div className="flex items-center relative">
+          <div className="relative flex items-center">
             {/* Search PC */}
             <Input
-              className="hidden lg:block w-[370px] text-black"
+              className="hidden w-[370px] text-black lg:block"
               placeholder="Tìm kiếm phim..."
               onChange={handleOnChangeSearch}
               onKeyDown={handleSearch}
@@ -318,24 +319,21 @@ const Header = () => {
             />
             {!isLoading && (
               <AiOutlineSearch
-                className="hidden lg:block text-2xl text-gray-500 hover:text-gray-800 cursor-pointer absolute right-2"
+                className="absolute right-2 hidden cursor-pointer text-2xl text-gray-500 hover:text-gray-800 lg:block"
                 onClick={handleSearch}
               />
             )}
             {isLoading && (
-              <div
-                className="hidden lg:block w-4 h-4 rounded-full animate-spin
-                    border-4 border-solid border-gray-500 border-t-transparent absolute right-3"
-              ></div>
+              <div className="absolute right-3 hidden h-4 w-4 animate-spin rounded-full border-4 border-solid border-gray-500 border-t-transparent lg:block"></div>
             )}
             {searchValue && isTarget && (
-              <div className="w-[370px] min-h-auto max-h-[500px] overflow-y-auto overflow-hidden p-3 bg-[#181818] border border-solid border-white text-sm rounded absolute top-12 z-10">
+              <div className="min-h-auto absolute top-12 z-10 max-h-[500px] w-[370px] overflow-hidden overflow-y-auto rounded border border-solid border-white bg-[#181818] p-3 text-sm">
                 {searchResult.length > 0 ? (
                   <div className="flex flex-col gap-3 text-white">
                     {searchResult.map((item, index) => (
                       <div
                         key={index}
-                        className="flex gap-5 cursor-pointer"
+                        className="flex cursor-pointer gap-5"
                         onClick={() => {
                           router.push(`/movie/${item?.slug}`)
                           setIsTarget(false)
@@ -344,7 +342,7 @@ const Header = () => {
                         <img
                           src={item?.poster_url}
                           alt={item?.name}
-                          className="min-w-[100px] max-w-[100px] min-h-[56px] max-h-[56px] object-cover rounded"
+                          className="max-h-[56px] min-h-[56px] min-w-[100px] max-w-[100px] rounded object-cover"
                         />
                         <div className="overflow-hidden text-ellipsis">
                           {item?.name}
@@ -367,12 +365,12 @@ const Header = () => {
           {/* Icon Search Mobile */}
           {!isShowSearchMobile ? (
             <AiOutlineSearch
-              className="block lg:hidden text-2xl cursor-pointer"
+              className="block cursor-pointer text-2xl lg:hidden"
               onClick={() => setIsShowSearchMobile(true)}
             />
           ) : (
             <AiOutlineClose
-              className="block lg:hidden text-2xl cursor-pointer"
+              className="block cursor-pointer text-2xl lg:hidden"
               onClick={() => setIsShowSearchMobile(false)}
             />
           )}
@@ -385,7 +383,7 @@ const Header = () => {
 
       {isShowSearchMobile && (
         <div className="bg-[#181818]">
-          <div className="flex items-center relative">
+          <div className="relative flex items-center">
             {/* Search Mobile */}
             <Input
               className="w-full text-black"
@@ -395,7 +393,7 @@ const Header = () => {
             />
             {searchValue && (
               <AiOutlineSearch
-                className="text-2xl text-gray-500 hover:text-gray-800 cursor-pointer absolute right-5"
+                className="absolute right-5 cursor-pointer text-2xl text-gray-500 hover:text-gray-800"
                 onClick={handleSearch}
               />
             )}
