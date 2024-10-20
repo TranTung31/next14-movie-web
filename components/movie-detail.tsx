@@ -9,12 +9,10 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
-import { Button } from '@/components/ui/button'
 import { formatDateTimeDMY, formatServerUrl } from '@/lib/common'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { FaPlus } from 'react-icons/fa6'
 import { IoTimerOutline } from 'react-icons/io5'
 import { MdDateRange } from 'react-icons/md'
 
@@ -45,7 +43,7 @@ const MovieDetail: React.FC<MovieDetailProps> = ({ data }) => {
         setGenre(nameGenreArr.join(', '))
       }
     })
-  }, [])
+  }, [categoryKeys, movie])
 
   return (
     <div className="flex flex-col">
@@ -83,9 +81,9 @@ const MovieDetail: React.FC<MovieDetailProps> = ({ data }) => {
               <span>-</span>
               <h2>{movie?.original_name}</h2>
             </div>
-            <Button className="bg-red-500 text-white hover:bg-red-600">
+            {/* <Button className="bg-red-500 text-white hover:bg-red-600">
               <FaPlus /> &nbsp; Thêm vào yêu thích
-            </Button>
+            </Button> */}
           </div>
 
           <div className="flex flex-wrap items-center gap-3 text-white">
@@ -132,10 +130,12 @@ const MovieDetail: React.FC<MovieDetailProps> = ({ data }) => {
               <span className="font-bold">Tổng số tập: </span>
               <span>{movie?.total_episodes}</span>
             </div>
-            <div>
-              <span className="font-bold">Đạo diễn: </span>
-              <span>{movie?.director}</span>
-            </div>
+            {movie?.director && (
+              <div>
+                <span className="font-bold">Đạo diễn: </span>
+                <span>{movie?.director}</span>
+              </div>
+            )}
             <div>
               <span className="font-bold">Diễn viên: </span>
               <span>{movie?.casts}</span>
